@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <script>
+      function clickCounter() {
+        if (typeof Storage !== "undefined") {
+          if (localStorage.clickcount) {
+            localStorage.clickcount = Number(localStorage.clickcount) + 1;
+          } else {
+            localStorage.clickcount = 1;
+          }
+          document.getElementById("result").innerHTML =
+            "Vous avez cliqué sur le bouton " +
+            localStorage.clickcount +
+            " fois.";
+        } else {
+          document.getElementById("result").innerHTML =
+            "Votre navigateur ne supporte pas le web storage...";
+        }
+      }
+    </script>
+  </head>
+  <body>
+    <p><button onclick="clickCounter()" type="button">Cliquer ici!</button></p>
+    <div id="result"></div>
+    <p>Cliquez sur le bouton pour voir l'incrementation.</p>
+    <p>
+      Fermez l'onglet du navigateur (ou la fenêtre), et essayez à nouveau, vous
+      allez voir que le compteur continuera à compter (n'est pas réinitialisé).
+    </p>
+  </body>
+</html>
