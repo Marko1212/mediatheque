@@ -26,3 +26,18 @@ function insertRow() {
     cell1.innerHTML = "NvllLigneCellule1";
     cell2.innerHTML = "NvllLigneCellule2";
 }
+
+var x = document.getElementById("demo");
+
+function getLocation() {
+    if (navigator.geolocation) {
+        navigator.geolocation.getCurrentPosition(showPosition);
+    } else {
+        x.innerHTML = "La géoloca n'est pas supportée par ce navigateur";
+    }
+}
+
+function showPosition(position) {
+    x.innerHTML = "Latitude: " + position.coords.latitude + "<br>Longitude: "
+        + position.coords.longitude;
+}
