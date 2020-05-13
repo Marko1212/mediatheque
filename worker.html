@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="fr">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Worker</title>
+  </head>
+  <body>
+    <p>Valeur retournée par le Worker : <output id="result"></output></p>
+    <button onclick="startWorker()">Démarrer le Worker</button>
+    <button onclick="stopWorker()">Arrêter le Worker</button>
+
+    <script>
+      var w;
+      function startWorker() {
+        if (typeof Worker !== "undefined") {
+          if (typeof w == "undefined") {
+            w = new Worker("js/worker.js");
+          }
+          w.onmessage = function (event) {
+            document.getElementById("result").innerHTML = event.data;
+          };
+        } else {
+          document.getElementById("result").innerHTML =
+            "Attention! Votre navigateur ne supporte pas le Web Worker...";
+        }
+      }
+
+      function stopWorker() {
+        w.terminate();
+        w = undefined;
+      }
+    </script>
+  </body>
+</html>
